@@ -1,0 +1,58 @@
+{
+  "skill_name": "md-to-html",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "evals/samples/table-heavy.md をHTMLにして",
+      "expected_output": "テーブル4個(四半期売上、地域別内訳、製品別内訳、KPI)を含む単一の自己完結HTMLファイルが生成される。テーブル数・テーブル比率が高いため、ダッシュボード風グリッド/テーブルカードレイアウトが選定される。",
+      "files": ["evals/samples/table-heavy.md"],
+      "assertions": [
+        "出力は単一の.htmlファイルであり、<link rel=\"stylesheet\">を含まない",
+        "outputは外部の<script src=...>タグを含まない",
+        "outputはhttp(s)://で始まるCSS/JS/フォントの読み込み(<link>, @import, <script src>)を含まない",
+        "<meta name=\"viewport\"を含む",
+        ":root ブロック内に --bg, --text, --line-height を含む契約CSS変数が定義されている",
+        ":root ブロックの外に生のカラー値(#で始まる16進カラーコード等)が書かれていない",
+        "入力Markdown中の4個のテーブルすべてが<table>要素として出力に保持されている",
+        "display:grid または display:flex を用いたレスポンシブグリッドでテーブルカードが配置されている(広い画面で複数カラム、狭い画面で1カラムに折り返す)",
+        "生成マーカーコメントに正規化レイアウトID `layout: dashboard` が含まれている",
+        "入力Markdownのh1〜h3階層が出力HTMLの<h1>〜<h3>として保持されている"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "evals/samples/timeline.md をHTMLにして",
+      "expected_output": "Step 1〜6の手順と日付シグナルを骨格とする単一の自己完結HTMLファイルが生成される。時系列シグナルが文書の主構造であるため、タイムライン/ステッパーレイアウトが選定される。",
+      "files": ["evals/samples/timeline.md"],
+      "assertions": [
+        "出力は単一の.htmlファイルであり、<link rel=\"stylesheet\">を含まない",
+        "outputは外部の<script src=...>タグを含まない",
+        "outputはhttp(s)://で始まるCSS/JS/フォントの読み込み(<link>, @import, <script src>)を含まない",
+        "<meta name=\"viewport\"を含む",
+        ":root ブロック内に --bg, --text, --line-height を含む契約CSS変数が定義されている",
+        ":root ブロックの外に生のカラー値(#で始まる16進カラーコード等)が書かれていない",
+        "入力Markdownのh1〜h3階層が出力HTMLの<h1>〜<h3>として保持されている",
+        "Step 1からStep 6までの順序が入力Markdownと同じ順序で出力されている",
+        "タイムラインまたはステッパー構造(<ol>要素、または番号付きステップを表すクラス付き要素)が存在する",
+        "生成マーカーコメントに正規化レイアウトID `layout: timeline` が含まれている"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "evals/samples/article.md をHTMLにして",
+      "expected_output": "見出し2階層と段落中心の通常記事(表・コード・比較なし)を単一の自己完結HTMLファイルに変換する。判定条件がいずれも非該当のため、シンプル縦スクロール記事レイアウトが選定される。",
+      "files": ["evals/samples/article.md"],
+      "assertions": [
+        "出力は単一の.htmlファイルであり、<link rel=\"stylesheet\">を含まない",
+        "outputは外部の<script src=...>タグを含まない",
+        "outputはhttp(s)://で始まるCSS/JS/フォントの読み込み(<link>, @import, <script src>)を含まない",
+        "<meta name=\"viewport\"を含む",
+        ":root ブロック内に --bg, --text, --line-height を含む契約CSS変数が定義されている",
+        ":root ブロックの外に生のカラー値(#で始まる16進カラーコード等)が書かれていない",
+        "入力Markdownのh1〜h3階層が出力HTMLの<h1>〜<h3>として保持されている",
+        "タブ・複数カラムグリッド・アコーディオンなど過剰な構造化要素を生成していない",
+        "生成マーカーコメントに正規化レイアウトID `layout: article`(局所強調ハイブリッドの場合は `layout: article+<強調要素>`)が含まれている"
+      ]
+    }
+  ]
+}
