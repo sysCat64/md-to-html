@@ -4,8 +4,9 @@
   "version": "0.1.0",
   "description": "Generate content-aware, standalone HTML from Markdown files. Picks the best layout (dashboard, timeline, comparison, code cards, or article) for each document. Optimized for Japanese content.",
   "author": {
-    "name": "martha"
+    "name": "sysCat64"
   },
+  "repository": "https://github.com/sysCat64/md-to-html",
   "license": "MIT",
   "keywords": [
     "markdown",
@@ -20,7 +21,7 @@
     "displayName": "md-to-html",
     "shortDescription": "Turn Markdown into standalone, content-aware HTML.",
     "longDescription": "md-to-html reads a Markdown file, identifies whether the document is table-heavy, procedural, comparative, code-heavy, deeply structured, or article-like, then generates a single self-contained HTML page with inline CSS and lightweight inline JavaScript.",
-    "developerName": "martha",
+    "developerName": "sysCat64",
     "category": "Productivity",
     "capabilities": [
       "Markdown",

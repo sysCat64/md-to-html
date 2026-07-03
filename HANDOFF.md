@@ -1,5 +1,15 @@
 # md-to-html 開発記録(HANDOFF)
 
+## セッション記録: 2026-07-03 (GitHub公開情報の反映)
+
+### 変更内容
+- `README.md` の公開前プレースホルダーを `sysCat64/md-to-html` および `https://github.com/sysCat64/md-to-html.git` に差し替え。
+- `.claude-plugin/marketplace.json` を追加し、Claude Codeで `sysCat64/md-to-html` をマーケットプレイスとして追加できる形にした。
+- `.claude-plugin/plugin.json`、`.codex-plugin/plugin.json`、`.antigravity-plugin/plugin.json` に `repository` を追加し、公開メタデータのauthor/developerNameを `sysCat64` に統一。
+
+### 非破壊境界
+- スキル本文、判定ロジック、テーマCSS、evalサンプルは変更していない。
+
 ## セッション記録: 2026-07-03 (Antigravity専用プラグイン実装)
 
 ### 実施体制
@@ -94,5 +104,3 @@
 - Antigravity CLI 用ラッパーの作成(別セッション予定。INSTRUCTIONS.md が正本)
 - evalケースの追加: 比較(comparison)、コード中心(code-cards)、深い階層(sidebar-nav)、
   既存HTML上書き確認、生HTML/相対リンク警告の動作検証
-- README.md のリポジトリURLプレースホルダをGitHub公開時に差し替え
-- plugin.json の `repository` フィールドをGitHub公開時に追加

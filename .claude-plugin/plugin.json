@@ -2,7 +2,8 @@
   "name": "md-to-html",
   "version": "0.1.0",
   "description": "Generate content-aware, standalone HTML from Markdown files. Picks the best layout (dashboard, timeline, comparison, code cards, or article) for each document. Optimized for Japanese content.",
-  "author": { "name": "martha" },
+  "author": { "name": "sysCat64" },
+  "repository": "https://github.com/sysCat64/md-to-html",
   "license": "MIT",
   "keywords": ["markdown", "html", "converter", "layout", "documentation", "japanese"]
 }

@@ -20,10 +20,10 @@ Markdownファイルの内容を読み取り、表・時系列・比較・階層
 
 ### Claude Code
 
-GitHub公開後、Claude Codeではマーケットプレイス経由でインストールできます。
+Claude Codeでは、このリポジトリをマーケットプレイスとして追加してからインストールします。
 
 ```
-/plugin marketplace add <this-repo>
+/plugin marketplace add sysCat64/md-to-html
 /plugin install md-to-html
 ```
 
@@ -31,17 +31,17 @@ GitHub公開後、Claude Codeではマーケットプレイス経由でインス
 
 Codex CLIでは、このリポジトリをCodex plugin marketplaceとして追加してからプラグインをインストールします。
 
-GitHub公開後:
+GitHubからインストールする場合:
 
 ```bash
-codex plugin marketplace add <owner>/<repo> --ref main
+codex plugin marketplace add sysCat64/md-to-html --ref main
 codex plugin add md-to-html@md-to-html
 ```
 
 ローカルで試す場合:
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/sysCat64/md-to-html.git
 cd md-to-html
 codex plugin marketplace add "$PWD"
 codex plugin add md-to-html@md-to-html
@@ -55,16 +55,16 @@ Codexは `.agents/plugins/marketplace.json` をマーケットプレイス定義
 
 Antigravity CLI (`agy`) では、このリポジトリを指定、あるいはローカルパスを指定してプラグインをインストールします。
 
-GitHub公開後:
+GitHubからインストールする場合:
 
 ```bash
-agy plugin install <repository-url>#main:.antigravity-plugin
+agy plugin install https://github.com/sysCat64/md-to-html.git#main:.antigravity-plugin
 ```
 
 ローカルで試す場合:
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/sysCat64/md-to-html.git
 cd md-to-html
 agy plugin install .antigravity-plugin
 ```
@@ -113,6 +113,7 @@ Markdownの特徴量(テーブル数・コード比率・見出し階層・時�
 
 ```
 .agents/plugins/marketplace.json        Codex marketplace定義
+.claude-plugin/marketplace.json         Claude Code marketplace定義
 .claude-plugin/plugin.json              Claude Code用プラグインマニフェスト
 .codex-plugin/plugin.json               Codex用プラグインマニフェスト
 .antigravity-plugin/plugin.json         Antigravity用プラグインマニフェスト

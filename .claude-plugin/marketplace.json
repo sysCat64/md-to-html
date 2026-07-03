@@ -1,0 +1,30 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "md-to-html",
+  "description": "Content-aware Markdown to standalone HTML conversion for Claude Code.",
+  "owner": {
+    "name": "sysCat64"
+  },
+  "plugins": [
+    {
+      "name": "md-to-html",
+      "description": "Generate content-aware, standalone HTML from Markdown files. Picks the best layout for each document.",
+      "version": "0.1.0",
+      "author": {
+        "name": "sysCat64"
+      },
+      "source": "./",
+      "repository": "https://github.com/sysCat64/md-to-html",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "markdown",
+        "html",
+        "converter",
+        "layout",
+        "documentation",
+        "japanese"
+      ]
+    }
+  ]
+}
