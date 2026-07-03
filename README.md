@@ -1,25 +1,61 @@
 # md-to-html
 
-Markdownファイルを読み、内容の性質(表・時系列・比較・階層・コード中心など)に応じて最適なレイアウトを都度設計し、単一の自己完結HTML(インラインCSS+軽量インラインJS)として出力するClaude Code / Codex / Antigravity向けプラグインです。
+Markdownファイルの内容を読み取り、表・時系列・比較・階層・コード中心といった文書の性質に合わせてレイアウトを選び、単一の自己完結HTMLとして出力するClaude Code / Codex / Antigravity向けプラグインです。
 
 ## 概要
 
-固定のテンプレートにMarkdownを流し込む変換ツールではなく、ドキュメントの構造をそのつど読み取り、最も内容に合ったレイアウトをLLM自身が設計するという思想に基づいています。この発想はAnthropicのブログ記事 [The unreasonable effectiveness of HTML](https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html) に由来しており、静的なコンバータでは得られない、内容ごとに最適化された表現力を狙っています。
+`md-to-html` は、固定テンプレートにMarkdownを流し込むだけの変換ツールではありません。対象ファイルの構造をLLMが読み取り、内容に合った情報設計・視覚表現をその場で組み立てます。
+
+この発想はAnthropicのブログ記事 [The unreasonable effectiveness of HTML](https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html) に由来しています。静的なコンバータでは表現しづらい、文書ごとに最適化された読みやすいHTMLを作ることを狙っています。
+
+主な特徴:
+
+- Markdown本文を欠落・要約せず、単一HTMLに変換
+- CSSと軽量なvanilla JSをインライン化し、外部ネットワーク依存を持たない
+- light / dark のテーマCSSを同梱
+- レイアウト判定の根拠を生成HTMLのコメントと完了報告に残す
+- 日本語Markdownを前提にした行間・フォントスタック・説明文に対応
 
 ## インストール
 
-Claude Codeでは、GitHub公開後に以下のコマンドでマーケットプレイス経由でインストールできます。
+### Claude Code
+
+GitHub公開後、Claude Codeではマーケットプレイス経由でインストールできます。
 
 ```
 /plugin marketplace add <this-repo>
 /plugin install md-to-html
 ```
 
-Codexでは、リポジトリ直下の `.codex-plugin/plugin.json` をプラグインマニフェストとして使用します。ローカルで試用する場合は、このリポジトリをクローンした状態のディレクトリをそのままプラグインディレクトリとして読み込ませることで動作を確認できます。
+### Codex
+
+Codex CLIでは、このリポジトリをCodex plugin marketplaceとして追加してからプラグインをインストールします。
+
+GitHub公開後:
+
+```bash
+codex plugin marketplace add <owner>/<repo> --ref main
+codex plugin add md-to-html@md-to-html
+```
+
+ローカルで試す場合:
+
+```bash
+git clone <this-repo>
+cd md-to-html
+codex plugin marketplace add "$PWD"
+codex plugin add md-to-html@md-to-html
+```
+
+更新後にCodexへ再読み込みさせたい場合は、同じ `codex plugin add md-to-html@md-to-html` を再実行し、新しいCodexスレッドを開始してください。
+
+Codexは `.agents/plugins/marketplace.json` をマーケットプレイス定義として読み込み、プラグイン本体ではリポジトリ直下の `.codex-plugin/plugin.json` を使用します。
+
+### Antigravity
 
 Antigravityでは、リポジトリ直下の `.antigravity-plugin/plugin.json` をプラグインマニフェストとして使用します。
 
-なお、本プラグインは `skills/` ディレクトリを各ツールが発見する構成を利用しています。Claude Code用の `.claude-plugin/plugin.json` 、Codex用の `.codex-plugin/plugin.json` 、およびAntigravity用の `.antigravity-plugin/plugin.json` は分離しており、どれも同じ判定ロジックを参照します。
+各環境のマニフェストは分離していますが、実際のスキル本体と判定ロジックは共通です。
 
 ## 使い方
 
@@ -30,9 +66,11 @@ Antigravityでは、リポジトリ直下の `.antigravity-plugin/plugin.json` �
 
 スラッシュコマンドを使わず、会話の中で「このmdをHTMLにして」「Markdownをきれいなページにして」のように依頼しても自動的に発火します。
 
+出力先は、入力Markdownと同じディレクトリの `<入力ファイル名>.html` です。たとえば `report.md` は `report.html` に変換されます。
+
 ## レイアウト判定の概要
 
-Markdownの特徴量(テーブル数・コード比率・見出し階層・時系列シグナル・比較シグナルなど)を抽出し、以下の優先順位カスケード(上が優先)で6種類のレイアウトから1つを選定します。
+Markdownの特徴量(テーブル数・コード比率・見出し階層・時系列シグナル・比較シグナルなど)を抽出し、以下の優先順位カスケードで6種類のレイアウトから1つを選定します。上の行ほど優先度が高く、複数条件に当てはまる場合は上位の意味構造を優先します。
 
 | レイアウト | 主な発火条件 |
 |---|---|
@@ -43,7 +81,7 @@ Markdownの特徴量(テーブル数・コード比率・見出し階層・時�
 | サイドバーナビ+アコーディオン(またはタブ) | 最大階層h3以上 かつ 見出し8個以上 |
 | シンプル縦スクロール記事 | 上記いずれも非該当 |
 
-判定がどの条件にも強く当てはまらない場合は、シンプル記事を基調に該当箇所だけ局所的に強調するハイブリッド構成にフォールバックします。判定ロジックの詳細な手順(特徴量の数え方、優先順位の理由)は [`skills/md-to-html/SKILL.md`](skills/md-to-html/SKILL.md) のSYNC-BLOCKに記載しています。
+判定がどの条件にも強く当てはまらない場合は、シンプル記事を基調に、該当箇所だけ局所的に強調するハイブリッド構成にフォールバックします。判定ロジックの詳細な手順(特徴量の数え方、優先順位の理由)は [`skills/md-to-html/SKILL.md`](skills/md-to-html/SKILL.md) のSYNC-BLOCKに記載しています。
 
 ## テーマのカスタマイズ
 
@@ -58,19 +96,23 @@ Markdownの特徴量(テーブル数・コード比率・見出し階層・時�
 ## ディレクトリ構成
 
 ```
-.claude-plugin/plugin.json          Claude Code用プラグインマニフェスト
-.codex-plugin/plugin.json           Codex用プラグインマニフェスト
-.antigravity-plugin/plugin.json     Antigravity用プラグインマニフェスト
-skills/md-to-html/SKILL.md          スキル定義(判定ロジック含む)
-skills/md-to-html/templates/        テーマCSS(light / dark)
+.agents/plugins/marketplace.json        Codex marketplace定義
+.claude-plugin/plugin.json              Claude Code用プラグインマニフェスト
+.codex-plugin/plugin.json               Codex用プラグインマニフェスト
+.antigravity-plugin/plugin.json         Antigravity用プラグインマニフェスト
+.antigravity-plugin/skills/md-to-html   Antigravity用のskillsシンボリックリンク
 .agent/skills/md-to-html/INSTRUCTIONS.md  ツール非依存の判定ロジック正本
-evals/evals.json                    評価ケース定義
-evals/samples/                      評価用サンプルMarkdown
+skills/md-to-html/SKILL.md              スキル定義(判定ロジック含む)
+skills/md-to-html/templates/            テーマCSS(light / dark)
+evals/evals.json                        評価ケース定義
+evals/samples/                          評価用サンプルMarkdown
 ```
 
 ## マルチエージェント対応
 
-判定ロジックの正本は [`.agent/skills/md-to-html/INSTRUCTIONS.md`](.agent/skills/md-to-html/INSTRUCTIONS.md) にあり、`SKILL.md` はこのファイルとSYNC-BLOCK部分を完全一致させる運用としています。Claude Code用、Codex用、およびAntigravity用のマニフェストは分離しつつ、スキル本体は同じ正本から同期します。
+判定ロジックの正本は [`.agent/skills/md-to-html/INSTRUCTIONS.md`](.agent/skills/md-to-html/INSTRUCTIONS.md) にあり、`SKILL.md` はこのファイルとSYNC-BLOCK部分を完全一致させる運用としています。
+
+Claude Code用、Codex用、Antigravity用のマニフェストは分離しつつ、スキル本体は同じ正本から同期します。環境ごとの配布形態を変えても、レイアウト判定の挙動がずれないようにするためです。
 
 ## ライセンス
 

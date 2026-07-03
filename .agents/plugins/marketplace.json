@@ -1,0 +1,20 @@
+{
+  "name": "md-to-html",
+  "interface": {
+    "displayName": "md-to-html"
+  },
+  "plugins": [
+    {
+      "name": "md-to-html",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
