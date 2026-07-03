@@ -1,6 +1,6 @@
 # md-to-html
 
-Markdownファイルを読み、内容の性質(表・時系列・比較・階層・コード中心など)に応じて最適なレイアウトを都度設計し、単一の自己完結HTML(インラインCSS+軽量インラインJS)として出力するClaude Codeプラグインです。
+Markdownファイルを読み、内容の性質(表・時系列・比較・階層・コード中心など)に応じて最適なレイアウトを都度設計し、単一の自己完結HTML(インラインCSS+軽量インラインJS)として出力するClaude Code / Codex向けプラグインです。
 
 ## 概要
 
@@ -8,16 +8,16 @@ Markdownファイルを読み、内容の性質(表・時系列・比較・階�
 
 ## インストール
 
-GitHub公開後は、以下のコマンドでマーケットプレイス経由でインストールできます。
+Claude Codeでは、GitHub公開後に以下のコマンドでマーケットプレイス経由でインストールできます。
 
 ```
 /plugin marketplace add <this-repo>
 /plugin install md-to-html
 ```
 
-ローカルで試用する場合は、このリポジトリをクローンした状態のディレクトリをそのままプラグインディレクトリとして読み込ませることで動作を確認できます。
+Codexでは、リポジトリ直下の `.codex-plugin/plugin.json` をプラグインマニフェストとして使用します。ローカルで試用する場合は、このリポジトリをクローンした状態のディレクトリをそのままプラグインディレクトリとして読み込ませることで動作を確認できます。
 
-なお、本プラグインは `skills/` ディレクトリをClaude Codeが自動発見する仕組みを利用しており、`plugin.json` へのスキル登録記述は不要です(仕様どおりの構成です)。
+なお、本プラグインは `skills/` ディレクトリをClaude Code / Codexが発見する構成を利用しています。Claude Code用の `.claude-plugin/plugin.json` とCodex用の `.codex-plugin/plugin.json` は分離しており、どちらも同じ判定ロジックを参照します。
 
 ## 使い方
 
@@ -56,8 +56,9 @@ Markdownの特徴量(テーブル数・コード比率・見出し階層・時�
 ## ディレクトリ構成
 
 ```
-.claude-plugin/plugin.json          プラグインマニフェスト
-skills/md-to-html/SKILL.md          Claude Code用スキル定義(判定ロジック含む)
+.claude-plugin/plugin.json          Claude Code用プラグインマニフェスト
+.codex-plugin/plugin.json           Codex用プラグインマニフェスト
+skills/md-to-html/SKILL.md          スキル定義(判定ロジック含む)
 skills/md-to-html/templates/        テーマCSS(light / dark)
 .agent/skills/md-to-html/INSTRUCTIONS.md  ツール非依存の判定ロジック正本
 evals/evals.json                    評価ケース定義
@@ -66,7 +67,7 @@ evals/samples/                      評価用サンプルMarkdown
 
 ## マルチエージェント対応
 
-判定ロジックの正本は [`.agent/skills/md-to-html/INSTRUCTIONS.md`](.agent/skills/md-to-html/INSTRUCTIONS.md) にあり、Claude Code用の `SKILL.md` はこのファイルとSYNC-BLOCK部分を完全一致させる運用としています。Codex CLIやAntigravity等、他ツール向けのラッパー追加は今後の対応予定です。
+判定ロジックの正本は [`.agent/skills/md-to-html/INSTRUCTIONS.md`](.agent/skills/md-to-html/INSTRUCTIONS.md) にあり、`SKILL.md` はこのファイルとSYNC-BLOCK部分を完全一致させる運用としています。Claude Code用とCodex用のマニフェストは分離しつつ、スキル本体は同じ正本から同期します。Antigravity等、他ツール向けのラッパー追加は今後の対応予定です。
 
 ## ライセンス
 

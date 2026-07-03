@@ -1,5 +1,22 @@
 # md-to-html 開発記録(HANDOFF)
 
+## セッション記録: 2026-07-03 (Codex側プラグインマニフェスト追加)
+
+### 実施体制
+- 司令塔: Codex
+- 調査: Codexサブエージェント(read-only)
+- 実装: Codexメインセッション
+
+### 変更内容
+- `.codex-plugin/plugin.json` を追加し、Codex用プラグインマニフェストを定義。
+- 既存の `.claude-plugin/plugin.json`、`skills/md-to-html/SKILL.md`、テーマCSSは変更しない方針で実施。
+- Codexマニフェストは既存 `skills/` を参照し、判定ロジックの正本は引き続き `.agent/skills/md-to-html/INSTRUCTIONS.md` とする。
+
+### 非破壊境界
+- Claude Code用マニフェストとスキル本文は維持。
+- `SKILL.md` と `INSTRUCTIONS.md` のSYNC-BLOCK運用も維持。
+- READMEのみ、Claude Code / Codexの両マニフェストが存在する現状に合わせて更新。
+
 ## セッション記録: 2026-07-03 (Claude Code側実装)
 
 ### 実施体制
@@ -60,7 +77,7 @@
 
 ### 将来課題
 - SYNC-BLOCK(SKILL.md ↔ .agent/skills/md-to-html/INSTRUCTIONS.md)の一致をCIで自動チェック
-- Codex / Antigravity CLI 用ラッパーの作成(別セッション予定。INSTRUCTIONS.md が正本)
+- Antigravity CLI 用ラッパーの作成(別セッション予定。INSTRUCTIONS.md が正本)
 - evalケースの追加: 比較(comparison)、コード中心(code-cards)、深い階層(sidebar-nav)、
   既存HTML上書き確認、生HTML/相対リンク警告の動作検証
 - README.md のリポジトリURLプレースホルダをGitHub公開時に差し替え
