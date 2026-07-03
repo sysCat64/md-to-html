@@ -1,0 +1,32 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "md-to-html",
+  "version": "0.1.0",
+  "description": "Generate content-aware, standalone HTML from Markdown files. Picks the best layout (dashboard, timeline, comparison, code cards, or article) for each document. Optimized for Japanese content.",
+  "author": {
+    "name": "martha"
+  },
+  "license": "MIT",
+  "keywords": [
+    "markdown",
+    "html",
+    "converter",
+    "layout",
+    "documentation",
+    "japanese"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "md-to-html",
+    "shortDescription": "Turn Markdown into standalone, content-aware HTML.",
+    "longDescription": "md-to-html reads a Markdown file, identifies whether the document is table-heavy, procedural, comparative, code-heavy, deeply structured, or article-like, then generates a single self-contained HTML page with inline CSS and lightweight inline JavaScript.",
+    "developerName": "martha",
+    "category": "Productivity",
+    "capabilities": [
+      "Markdown",
+      "HTML",
+      "Writing"
+    ],
+    "defaultPrompt": "Convert this Markdown file to a standalone HTML page."
+  }
+}

@@ -1,5 +1,19 @@
 # md-to-html 開発記録(HANDOFF)
 
+## セッション記録: 2026-07-03 (Antigravity専用プラグイン実装)
+
+### 実施体制
+- 司令塔: Antigravity
+- 実装: Antigravityサブエージェント (self)
+
+### 変更内容
+- `.antigravity-plugin/plugin.json` を追加し、Antigravity用プラグインマニフェストを定義。
+- `.antigravity-plugin/skills/` ディレクトリを作成し、`md-to-html` から `../../skills/md-to-html` へのシンボリックリンクを作成。
+- `README.md` を更新し、Antigravityについての概要、インストール・マニフェストの使用方法、ディレクトリ構成、マルチエージェント対応の記述を追記。
+
+### 非破壊境界
+- Claude CodeおよびCodex用の既存マニフェストやスキル定義（`skills/`配下）、判定ロジックの正本（`.agent/`配下）は変更せず、既存のプラグイン構成を維持。
+
 ## セッション記録: 2026-07-03 (Codex側プラグインマニフェスト追加)
 
 ### 実施体制

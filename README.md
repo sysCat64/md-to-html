@@ -1,6 +1,6 @@
 # md-to-html
 
-Markdownファイルを読み、内容の性質(表・時系列・比較・階層・コード中心など)に応じて最適なレイアウトを都度設計し、単一の自己完結HTML(インラインCSS+軽量インラインJS)として出力するClaude Code / Codex向けプラグインです。
+Markdownファイルを読み、内容の性質(表・時系列・比較・階層・コード中心など)に応じて最適なレイアウトを都度設計し、単一の自己完結HTML(インラインCSS+軽量インラインJS)として出力するClaude Code / Codex / Antigravity向けプラグインです。
 
 ## 概要
 
@@ -17,7 +17,9 @@ Claude Codeでは、GitHub公開後に以下のコマンドでマーケットプ
 
 Codexでは、リポジトリ直下の `.codex-plugin/plugin.json` をプラグインマニフェストとして使用します。ローカルで試用する場合は、このリポジトリをクローンした状態のディレクトリをそのままプラグインディレクトリとして読み込ませることで動作を確認できます。
 
-なお、本プラグインは `skills/` ディレクトリをClaude Code / Codexが発見する構成を利用しています。Claude Code用の `.claude-plugin/plugin.json` とCodex用の `.codex-plugin/plugin.json` は分離しており、どちらも同じ判定ロジックを参照します。
+Antigravityでは、リポジトリ直下の `.antigravity-plugin/plugin.json` をプラグインマニフェストとして使用します。
+
+なお、本プラグインは `skills/` ディレクトリを各ツールが発見する構成を利用しています。Claude Code用の `.claude-plugin/plugin.json` 、Codex用の `.codex-plugin/plugin.json` 、およびAntigravity用の `.antigravity-plugin/plugin.json` は分離しており、どれも同じ判定ロジックを参照します。
 
 ## 使い方
 
@@ -58,6 +60,7 @@ Markdownの特徴量(テーブル数・コード比率・見出し階層・時�
 ```
 .claude-plugin/plugin.json          Claude Code用プラグインマニフェスト
 .codex-plugin/plugin.json           Codex用プラグインマニフェスト
+.antigravity-plugin/plugin.json     Antigravity用プラグインマニフェスト
 skills/md-to-html/SKILL.md          スキル定義(判定ロジック含む)
 skills/md-to-html/templates/        テーマCSS(light / dark)
 .agent/skills/md-to-html/INSTRUCTIONS.md  ツール非依存の判定ロジック正本
@@ -67,7 +70,7 @@ evals/samples/                      評価用サンプルMarkdown
 
 ## マルチエージェント対応
 
-判定ロジックの正本は [`.agent/skills/md-to-html/INSTRUCTIONS.md`](.agent/skills/md-to-html/INSTRUCTIONS.md) にあり、`SKILL.md` はこのファイルとSYNC-BLOCK部分を完全一致させる運用としています。Claude Code用とCodex用のマニフェストは分離しつつ、スキル本体は同じ正本から同期します。Antigravity等、他ツール向けのラッパー追加は今後の対応予定です。
+判定ロジックの正本は [`.agent/skills/md-to-html/INSTRUCTIONS.md`](.agent/skills/md-to-html/INSTRUCTIONS.md) にあり、`SKILL.md` はこのファイルとSYNC-BLOCK部分を完全一致させる運用としています。Claude Code用、Codex用、およびAntigravity用のマニフェストは分離しつつ、スキル本体は同じ正本から同期します。
 
 ## ライセンス
 
