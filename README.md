@@ -53,7 +53,23 @@ Codexは `.agents/plugins/marketplace.json` をマーケットプレイス定義
 
 ### Antigravity
 
-Antigravityでは、リポジトリ直下の `.antigravity-plugin/plugin.json` をプラグインマニフェストとして使用します。
+Antigravity CLI (`agy`) では、このリポジトリを指定、あるいはローカルパスを指定してプラグインをインストールします。
+
+GitHub公開後:
+
+```bash
+agy plugin install <repository-url>#main:.antigravity-plugin
+```
+
+ローカルで試す場合:
+
+```bash
+git clone <this-repo>
+cd md-to-html
+agy plugin install .antigravity-plugin
+```
+
+インストールの確認やロードされたスキルの確認は、`agy` CLI 内で `/skills` を実行するか、`agy inspect` コマンドで確認できます。
 
 各環境のマニフェストは分離していますが、実際のスキル本体と判定ロジックは共通です。
 
