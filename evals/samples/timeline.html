@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!-- generated-by: md-to-html | layout: timeline | theme: light -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本番リリース手順書 — Atlas v3.2.0</title>
+<style>
+  :root {
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --text: #20242c;
+    --text-muted: #5f6875;
+    --border: #d9dee7;
+    --accent: #2563eb;
+    --accent-contrast: #ffffff;
+    --code-bg: #eef1f6;
+
+    --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+    --line-height: 1.8;
+    --letter-spacing: 0.02em;
+
+    --space-unit: 8px;
+    --radius: 8px;
+    --content-max-width: 820px;
+
+    --shadow: 0 1px 3px rgba(32, 36, 44, 0.08), 0 8px 24px rgba(32, 36, 44, 0.06);
+    --accent-soft: rgba(37, 99, 235, 0.08);
+    --warning: #92400e;
+    --warning-bg: rgba(217, 119, 6, 0.1);
+    --warning-border: rgba(217, 119, 6, 0.35);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+  }
+
+  header.page-header {
+    padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 3) calc(var(--space-unit) * 5);
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+
+  header.page-header h1 {
+    font-size: clamp(1.5rem, 3.6vw, 2.1rem);
+    font-weight: 700;
+    margin: 0 0 calc(var(--space-unit) * 2);
+  }
+
+  header.page-header p {
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  main {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 calc(var(--space-unit) * 3) calc(var(--space-unit) * 10);
+  }
+
+  section {
+    margin-bottom: calc(var(--space-unit) * 6);
+  }
+
+  section > h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 calc(var(--space-unit) * 3);
+    padding-bottom: calc(var(--space-unit) * 1.5);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .prereq-list {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 3.5);
+    margin: 0;
+    list-style: none;
+  }
+
+  .prereq-list li {
+    position: relative;
+    padding-left: calc(var(--space-unit) * 3.5);
+    margin-bottom: calc(var(--space-unit) * 1.5);
+  }
+
+  .prereq-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .prereq-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  ol.timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  ol.timeline::before {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+
+  ol.timeline > li {
+    position: relative;
+    padding-left: calc(var(--space-unit) * 7);
+    padding-bottom: calc(var(--space-unit) * 4);
+  }
+
+  ol.timeline > li:last-child {
+    padding-bottom: 0;
+  }
+
+  ol.timeline > li .step-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow);
+    z-index: 1;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: calc(var(--space-unit) * 2.5) calc(var(--space-unit) * 3);
+  }
+
+  .step-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 calc(var(--space-unit) * 1);
+  }
+
+  .step-date {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.2em 0.7em;
+    border-radius: 999px;
+    margin-bottom: calc(var(--space-unit) * 1.5);
+  }
+
+  .step-card p {
+    margin: 0 0 calc(var(--space-unit) * 1.5);
+    color: var(--text);
+  }
+
+  .step-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .step-card ol.substeps {
+    margin: 0;
+    padding-left: calc(var(--space-unit) * 2.5);
+  }
+
+  .step-card ol.substeps li {
+    margin-bottom: calc(var(--space-unit) * 0.75);
+  }
+
+  .step-card ol.substeps li:last-child {
+    margin-bottom: 0;
+  }
+
+  .callout {
+    background: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    border-radius: var(--radius);
+    padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 3.5);
+  }
+
+  .callout p {
+    margin: 0;
+    color: var(--warning);
+  }
+
+  .plain-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 3.5);
+  }
+
+  .plain-card p {
+    margin: 0;
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    ol.timeline > li {
+      padding-left: calc(var(--space-unit) * 6);
+    }
+    ol.timeline > li .step-marker {
+      width: 34px;
+      height: 34px;
+      font-size: 0.85rem;
+    }
+    ol.timeline::before {
+      left: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="page-header">
+  <h1>本番リリース手順書</h1>
+  <p>本ドキュメントは、Webアプリケーション「Atlas」のv3.2.0を本番環境へリリースする際の標準手順をまとめたものである。作業は必ず記載順に実施し、各ステップの完了確認を行ってから次に進むこと。</p>
+</header>
+
+<main>
+  <section>
+    <h2>前提条件</h2>
+    <ul class="prereq-list">
+      <li>ステージング環境でのQAが完了していること</li>
+      <li>リリースノートがドラフト済みであること</li>
+      <li>ロールバック用のバックアップが取得可能な状態であること</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>リリース手順</h2>
+    <ol class="timeline">
+      <li>
+        <span class="step-marker">1</span>
+        <div class="step-card">
+          <span class="step-date">2026-07-01</span>
+          <h3>コードフリーズの宣言</h3>
+          <p>対象ブランチ <code>release/v3.2.0</code> に対する新規マージを停止する。緊急のバグ修正のみ、リリースマネージャーの承認を得た上で例外的に許可する。</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-marker">2</span>
+        <div class="step-card">
+          <span class="step-date">2026-07-01 〜 2026-07-02</span>
+          <h3>ステージング環境での最終検証</h3>
+          <p>ステージング環境に最新のリリースブランチをデプロイし、回帰テストスイートを全件実行する。あわせて主要な業務シナリオについて手動での確認も行う。</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-marker">3</span>
+        <div class="step-card">
+          <span class="step-date">2026-07-02</span>
+          <h3>データベースマイグレーションのドライラン</h3>
+          <p>本番相当のデータセットを用いたステージングDBに対して、マイグレーションスクリプトをドライラン実行する。所要時間と失敗時のロールバック手順をこの時点で確定させる。</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-marker">4</span>
+        <div class="step-card">
+          <span class="step-date">2026-07-03</span>
+          <h3>リリースアナウンス</h3>
+          <p>利用者向けメンテナンス告知を配信する。メンテナンス予定時刻は日本時間2026年7月3日 23:00〜23:30とし、社内Slackおよびステータスページの両方に掲載する。</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-marker">5</span>
+        <div class="step-card">
+          <span class="step-date">2026-07-03 23:00</span>
+          <h3>本番デプロイの実施</h3>
+          <p>デプロイパイプラインを起動し、以下の順序で作業を行う。</p>
+          <ol class="substeps">
+            <li>本番データベースのバックアップを取得する</li>
+            <li>マイグレーションスクリプトを本番DBに適用する</li>
+            <li>アプリケーションサーバーをローリングデプロイする</li>
+            <li>ヘルスチェックエンドポイントで全インスタンスの起動を確認する</li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-marker">6</span>
+        <div class="step-card">
+          <span class="step-date">2026-07-03 23:30 〜 2026-07-04 09:00</span>
+          <h3>リリース後モニタリング</h3>
+          <p>デプロイ完了後、エラーレート・レイテンシ・主要業務指標のダッシュボードを最低8時間監視する。異常値を検知した場合は即座にロールバック手順に切り替える。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>ロールバック手順</h2>
+    <div class="callout">
+      <p>問題が発生した場合は、直前の安定版タグへ即座にロールバックする。データベースマイグレーションが破壊的変更を含む場合は、事前に取得したバックアップからのリストアも合わせて実施する。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>完了報告</h2>
+    <div class="plain-card">
+      <p>全ステップの完了後、リリースマネージャーはリリースノートを正式版として公開し、関係者にリリース完了を通知する。</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

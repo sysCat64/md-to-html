@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!-- generated-by: md-to-html | layout: dashboard | theme: light -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年度 第1四半期 事業レポート</title>
+<style>
+  :root {
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --text: #20242c;
+    --text-muted: #5f6875;
+    --border: #d9dee7;
+    --accent: #2563eb;
+    --accent-contrast: #ffffff;
+    --code-bg: #eef1f6;
+
+    --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+    --line-height: 1.8;
+    --letter-spacing: 0.02em;
+
+    --space-unit: 8px;
+    --radius: 8px;
+    --content-max-width: 820px;
+
+    --shadow: 0 1px 3px rgba(32, 36, 44, 0.08), 0 8px 24px rgba(32, 36, 44, 0.06);
+    --accent-soft: rgba(37, 99, 235, 0.08);
+    --positive: #157a4a;
+    --positive-bg: rgba(21, 122, 74, 0.1);
+    --negative: #b3261e;
+    --negative-bg: rgba(179, 38, 30, 0.1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+  }
+
+  header.page-header {
+    padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 3) calc(var(--space-unit) * 5);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  header.page-header h1 {
+    font-size: clamp(1.5rem, 3.6vw, 2.1rem);
+    font-weight: 700;
+    margin: 0 0 calc(var(--space-unit) * 2);
+  }
+
+  header.page-header p {
+    max-width: var(--content-max-width);
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 calc(var(--space-unit) * 3) calc(var(--space-unit) * 10);
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: calc(var(--space-unit) * 3);
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: calc(var(--space-unit) * 3.5);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 calc(var(--space-unit) * 2.5);
+    padding-bottom: calc(var(--space-unit) * 1.5);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    margin-bottom: calc(var(--space-unit) * 2.5);
+  }
+
+  .card caption {
+    caption-side: top;
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    margin-bottom: calc(var(--space-unit) * 1);
+  }
+
+  .card th,
+  .card td {
+    text-align: left;
+    padding: calc(var(--space-unit) * 1.25) calc(var(--space-unit) * 1);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .card th {
+    color: var(--text-muted);
+    font-weight: 600;
+    background: var(--code-bg);
+  }
+
+  .card th:first-child,
+  .card td:first-child {
+    white-space: normal;
+  }
+
+  .card tbody tr:hover {
+    background: var(--accent-soft);
+  }
+
+  .card tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .card p.card-note {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    flex-grow: 1;
+  }
+
+  .delta {
+    font-weight: 600;
+    padding: 0.1em 0.5em;
+    border-radius: 999px;
+    display: inline-block;
+  }
+
+  .delta.positive {
+    color: var(--positive);
+    background: var(--positive-bg);
+  }
+
+  .delta.negative {
+    color: var(--negative);
+    background: var(--negative-bg);
+  }
+
+  section.summary {
+    margin-top: calc(var(--space-unit) * 3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 3.5);
+  }
+
+  section.summary h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 calc(var(--space-unit) * 2);
+  }
+
+  section.summary p {
+    margin: 0;
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    .card table {
+      font-size: 0.85rem;
+    }
+    .card th,
+    .card td {
+      padding: calc(var(--space-unit) * 1) calc(var(--space-unit) * 0.75);
+    }
+  }
+</style>
+</head>
+<body>
+<header class="page-header">
+  <h1>2026年度 第1四半期 事業レポート</h1>
+  <p>本レポートは、2026年度第1四半期(4月〜6月)における売上実績、地域別・製品別の内訳、および主要KPIの推移をまとめたものである。全社的に堅調な成長を維持しており、特に海外市場での伸長が顕著であった。</p>
+</header>
+
+<main>
+  <section class="dashboard-grid">
+    <div class="card">
+      <h2>四半期売上サマリー</h2>
+      <table>
+        <thead>
+          <tr><th>月</th><th>売上高(百万円)</th><th>前年同月比</th><th>粗利率</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>4月</td><td>812</td><td><span class="delta positive">+12.4%</span></td><td>41.2%</td></tr>
+          <tr><td>5月</td><td>865</td><td><span class="delta positive">+15.1%</span></td><td>42.0%</td></tr>
+          <tr><td>6月</td><td>901</td><td><span class="delta positive">+18.3%</span></td><td>43.5%</td></tr>
+        </tbody>
+      </table>
+      <p class="card-note">4月から6月にかけて売上高は右肩上がりに推移し、粗利率も改善が続いている。特に6月は新製品の投入効果もあり、前年同月比で最大の伸びを記録した。</p>
+    </div>
+
+    <div class="card">
+      <h2>地域別売上内訳</h2>
+      <table>
+        <thead>
+          <tr><th>地域</th><th>売上高(百万円)</th><th>構成比</th><th>前年同期比</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>国内</td><td>1,420</td><td>54.1%</td><td><span class="delta positive">+8.2%</span></td></tr>
+          <tr><td>北米</td><td>620</td><td>23.6%</td><td><span class="delta positive">+21.0%</span></td></tr>
+          <tr><td>欧州</td><td>380</td><td>14.5%</td><td><span class="delta positive">+15.7%</span></td></tr>
+          <tr><td>アジア太平洋</td><td>158</td><td>6.0%</td><td><span class="delta positive">+30.2%</span></td></tr>
+          <tr><td>その他</td><td>45</td><td>1.7%</td><td><span class="delta positive">+5.0%</span></td></tr>
+        </tbody>
+      </table>
+      <p class="card-note">海外売上比率は前年同期の41%から45.9%まで上昇し、グローバル展開の進捗が数値にも表れている。アジア太平洋地域は成長率が突出しており、今後の重点投資エリアとして位置づけられる。</p>
+    </div>
+
+    <div class="card">
+      <h2>製品別売上内訳</h2>
+      <table>
+        <thead>
+          <tr><th>製品カテゴリ</th><th>売上高(百万円)</th><th>構成比</th><th>前年同期比</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>クラウドサービス</td><td>1,180</td><td>45.0%</td><td><span class="delta positive">+25.4%</span></td></tr>
+          <tr><td>オンプレミス製品</td><td>720</td><td>27.4%</td><td><span class="delta negative">-3.1%</span></td></tr>
+          <tr><td>コンサルティング</td><td>450</td><td>17.1%</td><td><span class="delta positive">+9.8%</span></td></tr>
+          <tr><td>サポート・保守</td><td>273</td><td>10.4%</td><td><span class="delta positive">+4.2%</span></td></tr>
+        </tbody>
+      </table>
+      <p class="card-note">クラウドサービスが引き続き成長を牽引している一方、オンプレミス製品は微減となった。これは市場全体のクラウドシフトを反映した結果であり、想定内の推移である。</p>
+    </div>
+
+    <div class="card">
+      <h2>主要KPI</h2>
+      <table>
+        <thead>
+          <tr><th>指標</th><th>今期実績</th><th>前期実績</th><th>目標値</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>新規契約数</td><td>342件</td><td>298件</td><td>320件</td></tr>
+          <tr><td>解約率</td><td>2.1%</td><td>2.6%</td><td>2.5%以下</td></tr>
+          <tr><td>顧客満足度スコア</td><td>4.4 / 5.0</td><td>4.2 / 5.0</td><td>4.3以上</td></tr>
+          <tr><td>平均契約単価</td><td>187万円</td><td>172万円</td><td>180万円</td></tr>
+        </tbody>
+      </table>
+      <p class="card-note">すべての主要KPIが目標値を上回るか、目標水準を達成した。特に解約率の改善は、第4四半期から進めてきたカスタマーサクセス体制強化の成果と考えられる。</p>
+    </div>
+  </section>
+
+  <section class="summary">
+    <h2>総括</h2>
+    <p>第1四半期は売上・利益率・顧客満足度のいずれも良好な結果となった。次四半期に向けては、アジア太平洋地域への投資拡大とオンプレミス製品のクラウド移行支援を重点施策として継続する。</p>
+  </section>
+</main>
+</body>
+</html>

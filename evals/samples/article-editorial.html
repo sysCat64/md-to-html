@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!-- generated-by: md-to-html | layout: article | theme: editorial -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>なぜ私たちはドキュメントを書かなくなったのか</title>
+<style>
+  :root {
+    --bg: #f8f5f0;
+    --surface: #fffdf9;
+    --text: #2c2a27;
+    --text-muted: #69635c;
+    --border: #dfd7cc;
+    --accent: #6f5aa7;
+    --accent-contrast: #ffffff;
+    --code-bg: #f0ebe3;
+
+    --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+    --line-height: 1.8;
+    --letter-spacing: 0.02em;
+
+    --space-unit: 8px;
+    --radius: 8px;
+    --content-max-width: 820px;
+
+    --shadow: 0 1px 3px rgba(44, 42, 39, 0.08), 0 8px 24px rgba(44, 42, 39, 0.06);
+    --accent-soft: rgba(111, 90, 167, 0.08);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+  }
+
+  header.page-header {
+    padding: calc(var(--space-unit) * 9) calc(var(--space-unit) * 3) calc(var(--space-unit) * 6);
+    text-align: center;
+  }
+
+  header.page-header .eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: calc(var(--space-unit) * 2);
+  }
+
+  header.page-header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.35rem);
+    line-height: 1.5;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    font-weight: 700;
+  }
+
+  main {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 calc(var(--space-unit) * 3) calc(var(--space-unit) * 12);
+  }
+
+  article.content {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 5);
+  }
+
+  @media (max-width: 600px) {
+    article.content {
+      padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 2.5);
+    }
+  }
+
+  article.content h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: calc(var(--space-unit) * 7);
+    margin-bottom: calc(var(--space-unit) * 2);
+    padding-bottom: calc(var(--space-unit) * 1.5);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  article.content section:first-of-type > h2:first-child,
+  article.content > h2:first-child {
+    margin-top: 0;
+  }
+
+  article.content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: calc(var(--space-unit) * 4.5);
+    margin-bottom: calc(var(--space-unit) * 1.5);
+    color: var(--text);
+    position: relative;
+    padding-left: calc(var(--space-unit) * 1.75);
+  }
+
+  article.content h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.2em;
+    bottom: 0.2em;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  article.content p {
+    margin: 0 0 calc(var(--space-unit) * 2.5);
+    color: var(--text);
+  }
+
+  article.content p:last-child {
+    margin-bottom: 0;
+  }
+
+  nav.toc {
+    max-width: var(--content-max-width);
+    margin: 0 auto calc(var(--space-unit) * 4);
+    padding: calc(var(--space-unit) * 2.5) calc(var(--space-unit) * 3);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  nav.toc p.toc-label {
+    margin: 0 0 calc(var(--space-unit) * 1.25);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  nav.toc ol {
+    margin: 0;
+    padding-left: calc(var(--space-unit) * 2.5);
+  }
+
+  nav.toc li {
+    margin-bottom: calc(var(--space-unit) * 0.75);
+  }
+
+  nav.toc li ol {
+    margin-top: calc(var(--space-unit) * 0.75);
+  }
+
+  nav.toc a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  nav.toc a:hover,
+  nav.toc a:focus {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  footer.page-footer {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 calc(var(--space-unit) * 3) calc(var(--space-unit) * 8);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<header class="page-header">
+  <span class="eyebrow">Essay</span>
+  <h1>なぜ私たちはドキュメントを書かなくなったのか</h1>
+</header>
+
+<nav class="toc" aria-label="目次">
+  <p class="toc-label">目次</p>
+  <ol>
+    <li>
+      <a href="#reason">ドキュメントが後回しになる理由</a>
+      <ol>
+        <li><a href="#later-fails">「あとで書く」が機能しない理由</a></li>
+        <li><a href="#perfectionism">完璧主義という罠</a></li>
+      </ol>
+    </li>
+    <li>
+      <a href="#small-habit">小さく書く習慣への転換</a>
+      <ol>
+        <li><a href="#searchability">完璧よりも検索可能性</a></li>
+      </ol>
+    </li>
+    <li><a href="#closing">おわりに</a></li>
+  </ol>
+</nav>
+
+<main>
+  <article class="content">
+    <p>チームの開発速度が上がるにつれて、ドキュメントを書く習慣が静かに失われていくのを何度も見てきた。これは怠慢の問題ではなく、構造的な問題だと思う。</p>
+
+    <h2 id="reason">ドキュメントが後回しになる理由</h2>
+    <p>新機能の開発が終わった瞬間、チームの注意はすでに次のタスクに移っている。ドキュメントを書くという行為は、コードを書き終えた「後」に発生する追加コストとして認識されがちで、優先度の綱引きに常に負けてしまう。</p>
+    <p>さらに厄介なのは、ドキュメントの価値が書いた本人にはほとんど見えないという点だ。書いた人はすでにその機能の仕組みを頭の中に持っている。恩恵を受けるのは半年後にコードベースへ合流する別の誰かであり、その誰かの存在は今の自分には抽象的すぎる。</p>
+
+    <h3 id="later-fails">「あとで書く」が機能しない理由</h3>
+    <p>「実装が落ち着いたらドキュメントを整備する」という計画は、経験上ほとんど実現しない。実装が落ち着く頃には次の緊急対応が始まっており、記憶が新鮮なうちに書くタイミングを逃してしまう。ドキュメントの鮮度は指数関数的に劣化する資産であり、後回しにするほど正確に書き起こすコストが増していく。</p>
+
+    <h3 id="perfectionism">完璧主義という罠</h3>
+    <p>もう一つの落とし穴は、ドキュメントを「読み物」として完成させようとしてしまうことだ。構成を練り、図を用意し、レビューを経てから公開しようとすると、着手のハードルが一気に上がる。結果として、下書きにすら至らないまま放置される。</p>
+
+    <h2 id="small-habit">小さく書く習慣への転換</h2>
+    <p>私たちのチームがここ半年で試してうまくいったのは、ドキュメントを「成果物」ではなく「作業ログの副産物」として扱う考え方だった。</p>
+    <p>具体的には、プルリクエストの説明文に「なぜこの設計にしたか」を一段落だけ書くルールを設けた。これは完成されたドキュメントではないが、後から読む人にとっては十分な文脈になる。断片的な記録が積み重なることで、結果的に検索可能な知識のアーカイブが形成されていった。</p>
+
+    <h3 id="searchability">完璧よりも検索可能性</h3>
+    <p>理想的なドキュメントを一つ書くよりも、粗くても検索可能な記録を百個残すほうが、実際のチームの役に立つという感覚が強まっている。ドキュメントの目的は美しい文章を残すことではなく、未来の自分や同僚が同じ疑問を二度調べずに済むようにすることだからだ。</p>
+
+    <h2 id="closing">おわりに</h2>
+    <p>ドキュメントを書く文化を取り戻すには、意志の力に頼るのではなく、書くコストそのものを下げる仕組みが必要だと感じている。完璧な記録を目指すのをやめ、作業の副産物として自然に残る小さな記録を積み重ねること。それが、私たちのチームがようやく見つけた現実的な落としどころだった。</p>
+  </article>
+</main>
+
+<footer class="page-footer">
+  <p>Generated as a single self-contained HTML file.</p>
+</footer>
+</body>
+</html>
