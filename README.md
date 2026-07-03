@@ -16,6 +16,54 @@ Markdownファイルの内容を読み取り、表・時系列・比較・階層
 - レイアウト判定の根拠を生成HTMLのコメントと完了報告に残す
 - 日本語Markdownを前提にした行間・フォントスタック・説明文に対応
 
+## サンプル出力
+
+### Lightテーマ
+
+![article](evals/samples/article-light.png)
+Markdown: evals/samples/article.md
+
+![table-heavy](evals/samples/table-heavy.png)
+Markdown: evals/samples/table-heavy.md
+
+![timeline](evals/samples/timeline.png)
+Markdown: evals/samples/timeline.md
+
+### Darkテーマ
+
+![dark](evals/samples/article-dark.png)
+Markdown: evals/samples/article.md
+
+### Catppuccin Latteテーマ
+
+![Catppuccin Latte](evals/samples/article-latte.png)
+Markdown: evals/samples/article.md
+
+### Catppuccin Mochaテーマ
+
+![Catppuccin Mocha](evals/samples/article-mocha.png)
+Markdown: evals/samples/article.md
+
+### Editorialテーマ
+
+![editorial](evals/samples/article-editorial.png)
+Markdown: evals/samples/article.md
+
+### Technicalテーマ
+
+![technical](evals/samples/article-technical.png)
+Markdown: evals/samples/article.md
+
+### Naturalテーマ
+
+![natural](evals/samples/article-natural.png)
+Markdown: evals/samples/article.md
+
+### Waテーマ（和）
+
+![wa](evals/samples/article-wa.png)
+Markdown: evals/samples/article.md
+
 ## インストール
 
 ### Claude Code
