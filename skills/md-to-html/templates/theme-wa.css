@@ -1,0 +1,25 @@
+/*
+  md-to-html theme contract (wa)
+
+  A Japanese-inspired theme with a warm washi-like page, sumi-toned text, and
+  a restrained indigo accent. Intended for calm, polished Japanese documents.
+*/
+:root {
+  --bg: #f7f3ea;
+  --surface: #fffaf2;
+  --text: #2b2823;
+  --text-muted: #6f665b;
+  --border: #ded3c2;
+  --accent: #2f5d7c;
+  --accent-contrast: #ffffff;
+  --code-bg: #efe7dc;
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+  --line-height: 1.8;
+  --letter-spacing: 0.02em;
+
+  --space-unit: 8px;
+  --radius: 8px;
+  --content-max-width: 820px;
+}

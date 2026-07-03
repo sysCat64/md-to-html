@@ -12,7 +12,7 @@ Markdownファイルの内容を読み取り、表・時系列・比較・階層
 
 - Markdown本文を欠落・要約せず、単一HTMLに変換
 - CSSと軽量なvanilla JSをインライン化し、外部ネットワーク依存を持たない
-- light / dark のテーマCSSを同梱
+- light / dark、Catppuccin Latte / Mocha、editorial / technical、natural / wa のテーマCSSを同梱
 - レイアウト判定の根拠を生成HTMLのコメントと完了報告に残す
 - 日本語Markdownを前提にした行間・フォントスタック・説明文に対応
 
@@ -78,6 +78,12 @@ agy plugin install .antigravity-plugin
 ```
 /md-to-html path/to/file.md
 /md-to-html path/to/file.md --theme dark
+/md-to-html path/to/file.md --theme catppuccin-latte
+/md-to-html path/to/file.md --theme catppuccin-mocha
+/md-to-html path/to/file.md --theme editorial
+/md-to-html path/to/file.md --theme technical
+/md-to-html path/to/file.md --theme natural
+/md-to-html path/to/file.md --theme wa
 ```
 
 スラッシュコマンドを使わず、会話の中で「このmdをHTMLにして」「Markdownをきれいなページにして」のように依頼しても自動的に発火します。
@@ -101,13 +107,13 @@ Markdownの特徴量(テーブル数・コード比率・見出し階層・時�
 
 ## テーマのカスタマイズ
 
-生成されるHTMLは、[`skills/md-to-html/templates/theme-light.css`](skills/md-to-html/templates/theme-light.css) と [`theme-dark.css`](skills/md-to-html/templates/theme-dark.css) の `:root` ブロックをそのままインライン展開して使用します。両テーマは以下のCSS変数を同名・同数で定義するというコントラクトを守っており、生成HTML側は色・フォント・余白の値をこの変数経由でのみ参照します。
+生成されるHTMLは、`skills/md-to-html/templates/` 配下の `theme-*.css` の `:root` ブロックをそのままインライン展開して使用します。標準の `light` / `dark` に加えて、[Catppuccin](https://catppuccin.com/palette/) の `catppuccin-latte` / `catppuccin-mocha`、長文記事向けの `editorial`、README・spec・表・コード向けの `technical`、穏やかな自然色の `natural`、和紙と藍を意識した `wa` も選択できます。すべてのテーマは以下のCSS変数を同名・同数で定義するというコントラクトを守っており、生成HTML側は色・フォント・余白の値をこの変数経由でのみ参照します。
 
 - `--bg`, `--surface`, `--text`, `--text-muted`, `--border`, `--accent`, `--accent-contrast`, `--code-bg`
 - `--font-sans`, `--font-mono`, `--line-height`, `--letter-spacing`
 - `--space-unit`, `--radius`, `--content-max-width`
 
-配色や余白を変更したい場合は、これらのCSSファイルの値を編集するだけで、生成されるすべてのHTMLに反映されます。
+配色や余白を変更したい場合は、これらのCSSファイルの値を編集するだけで、生成されるすべてのHTMLに反映されます。`--theme latte` は `catppuccin-latte`、`--theme mocha` は `catppuccin-mocha` の短縮名として扱います。
 
 ## ディレクトリ構成
 
@@ -120,7 +126,7 @@ Markdownの特徴量(テーブル数・コード比率・見出し階層・時�
 .antigravity-plugin/skills/md-to-html   Antigravity用のskillsシンボリックリンク
 .agent/skills/md-to-html/INSTRUCTIONS.md  ツール非依存の判定ロジック正本
 skills/md-to-html/SKILL.md              スキル定義(判定ロジック含む)
-skills/md-to-html/templates/            テーマCSS(light / dark)
+skills/md-to-html/templates/            テーマCSS(light / dark / Catppuccin / editorial / technical / natural / wa)
 evals/evals.json                        評価ケース定義
 evals/samples/                          評価用サンプルMarkdown
 ```

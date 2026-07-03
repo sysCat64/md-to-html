@@ -1,0 +1,25 @@
+/*
+  md-to-html theme contract (technical)
+
+  A crisp documentation theme for README, spec, table-heavy, and code-heavy
+  pages. Cool neutrals keep dense structure readable without darkening the page.
+*/
+:root {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --text: #172033;
+  --text-muted: #526071;
+  --border: #c8d3e1;
+  --accent: #0f6b7a;
+  --accent-contrast: #ffffff;
+  --code-bg: #e8eef6;
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+  --line-height: 1.8;
+  --letter-spacing: 0.02em;
+
+  --space-unit: 8px;
+  --radius: 8px;
+  --content-max-width: 820px;
+}

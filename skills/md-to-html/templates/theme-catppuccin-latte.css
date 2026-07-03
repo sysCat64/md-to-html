@@ -1,0 +1,28 @@
+/*
+  md-to-html theme contract (catppuccin-latte)
+
+  Based on the official Catppuccin Latte palette:
+  https://catppuccin.com/palette/
+
+  All theme files must define the same CSS variables inside :root.
+  Generated HTML must reference these values only through CSS variables.
+*/
+:root {
+  --bg: #eff1f5;
+  --surface: #e6e9ef;
+  --text: #4c4f69;
+  --text-muted: #5c5f77;
+  --border: #ccd0da;
+  --accent: #1e66f5;
+  --accent-contrast: #ffffff;
+  --code-bg: #dce0e8;
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+  --line-height: 1.8;
+  --letter-spacing: 0.02em;
+
+  --space-unit: 8px;
+  --radius: 8px;
+  --content-max-width: 820px;
+}

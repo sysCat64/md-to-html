@@ -1,0 +1,26 @@
+/*
+  md-to-html theme contract (editorial)
+
+  A soft long-form reading theme with a paper-like background, restrained
+  borders, and a muted plum accent. All theme files must define the same CSS
+  variables inside :root.
+*/
+:root {
+  --bg: #f8f5f0;
+  --surface: #fffdf9;
+  --text: #2c2a27;
+  --text-muted: #69635c;
+  --border: #dfd7cc;
+  --accent: #6f5aa7;
+  --accent-contrast: #ffffff;
+  --code-bg: #f0ebe3;
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+  --line-height: 1.8;
+  --letter-spacing: 0.02em;
+
+  --space-unit: 8px;
+  --radius: 8px;
+  --content-max-width: 820px;
+}

@@ -1,0 +1,25 @@
+/*
+  md-to-html theme contract (natural)
+
+  A calm sage-and-paper theme for explanatory documents, notes, and gentle
+  reading pages. The palette keeps organic warmth without lowering contrast.
+*/
+:root {
+  --bg: #f5f7f0;
+  --surface: #fffdf6;
+  --text: #263027;
+  --text-muted: #65715f;
+  --border: #d8dfcf;
+  --accent: #4f7f52;
+  --accent-contrast: #ffffff;
+  --code-bg: #edf2e6;
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+  --line-height: 1.8;
+  --letter-spacing: 0.02em;
+
+  --space-unit: 8px;
+  --radius: 8px;
+  --content-max-width: 820px;
+}

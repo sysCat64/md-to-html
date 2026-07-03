@@ -1,0 +1,28 @@
+/*
+  md-to-html theme contract (catppuccin-mocha)
+
+  Based on the official Catppuccin Mocha palette:
+  https://catppuccin.com/palette/
+
+  All theme files must define the same CSS variables inside :root.
+  Generated HTML must reference these values only through CSS variables.
+*/
+:root {
+  --bg: #1e1e2e;
+  --surface: #313244;
+  --text: #cdd6f4;
+  --text-muted: #bac2de;
+  --border: #45475a;
+  --accent: #89b4fa;
+  --accent-contrast: #11111b;
+  --code-bg: #181825;
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;
+  --line-height: 1.8;
+  --letter-spacing: 0.02em;
+
+  --space-unit: 8px;
+  --radius: 8px;
+  --content-max-width: 820px;
+}

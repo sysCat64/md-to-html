@@ -1,20 +1,20 @@
 /*
   md-to-html theme contract (dark)
 
-  両テーマ(theme-light.css / theme-dark.css)は同名・同数のCSS変数を
+  すべてのtheme-*.cssは同名・同数のCSS変数を
   :root ブロック内に定義すること。生成されるHTMLはこれらの値を
   ハードコードせず、必ずこのCSS変数経由で参照すること
   (:root ブロックの差し替えだけでテーマ切替が完結する状態を保つため)。
 */
 :root {
-  --bg: #111418;
-  --surface: #1b1f26;
-  --text: #e6e6e6;
-  --text-muted: #9aa4b2;
-  --border: #2c333d;
-  --accent: #4da3ff;
-  --accent-contrast: #0b1220;
-  --code-bg: #161b22;
+  --bg: #111318;
+  --surface: #1a1f27;
+  --text: #e6e8ee;
+  --text-muted: #a4adba;
+  --border: #303744;
+  --accent: #8ab4f8;
+  --accent-contrast: #07111f;
+  --code-bg: #151922;
 
   --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Noto Sans Mono", monospace;

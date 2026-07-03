@@ -1,5 +1,18 @@
 # md-to-html 開発記録(HANDOFF)
 
+## セッション記録: 2026-07-03 (テーマ追加と標準テーマ調整)
+
+### 変更内容
+- `skills/md-to-html/templates/` に `theme-catppuccin-latte.css` と `theme-catppuccin-mocha.css` を追加。
+- `theme-editorial.css` と `theme-technical.css` を追加し、長文記事向けの柔らかい紙面とREADME/spec/表/コード向けの締まった配色を用意。
+- `theme-natural.css` と `theme-wa.css` を追加し、穏やかな自然色テーマと和紙・藍を意識した日本語文書向けテーマを用意。
+- 既存の `theme-light.css` / `theme-dark.css` を標準テーマとして洗練し、背景・本文・muted text・border・accent・code backgroundの色を読みやすいニュートラル寄りに調整。
+- `SKILL.md` の `--theme` 受付値を `light` / `dark` / `catppuccin-latte` / `catppuccin-mocha` / `editorial` / `technical` / `natural` / `wa` に拡張し、`latte` / `mocha` を短縮名として扱う方針を追記。
+- `.agent/skills/md-to-html/INSTRUCTIONS.md` と `README.md` を更新し、全 `theme-*.css` が同じCSS変数コントラクトを守ることを明記。
+
+### 非破壊境界
+- 既存の `light` / `dark` テーマ名、レイアウト判定SYNC-BLOCK、マニフェスト類は変更していない。
+
 ## セッション記録: 2026-07-03 (GitHub公開情報の反映)
 
 ### 変更内容

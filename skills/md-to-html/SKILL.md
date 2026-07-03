@@ -2,7 +2,7 @@
 name: md-to-html
 description: Converts any Markdown file into a single self-contained HTML page whose layout is chosen based on the document's actual content — tables become a dashboard/card grid, steps or dates become a timeline, comparisons become side-by-side columns, code-heavy docs become code cards, and everything else becomes a clean article layout. Use whenever the user wants to turn Markdown into HTML, visualize/render/prettify a .md file, or make a Markdown doc look good as a web page. 日本語のMarkdown(「このmdをHTMLにして」「Markdownをきれいなページにして」等)にも対応。
 when_to_use: Markdownファイル(.md)をHTMLに変換・可視化・整形したいとき。「このmdをHTMLにして」「Markdownをきれいなページにして」等の依頼、または /md-to-html <path> の明示実行時。
-argument-hint: "<path-to-markdown-file> [--theme light|dark]"
+argument-hint: "<path-to-markdown-file> [--theme light|dark|catppuccin-latte|catppuccin-mocha|editorial|technical|natural|wa]"
 allowed-tools: Read, Write, Glob
 ---
 
@@ -14,7 +14,7 @@ allowed-tools: Read, Write, Glob
 
 ## 入力の解決
 
-1. `$ARGUMENTS` を解析し、Markdownファイルのパスと `--theme light|dark` オプションを取り出す。`--theme` 省略時は `light` を既定値とする。
+1. `$ARGUMENTS` を解析し、Markdownファイルのパスと `--theme light|dark|catppuccin-latte|catppuccin-mocha|editorial|technical|natural|wa` オプションを取り出す。`--theme` 省略時は `light` を既定値とする。`latte` は `catppuccin-latte`、`mocha` は `catppuccin-mocha` の短縮名として扱う。
 2. パスが曖昧・未指定の場合は、直前の会話文脈で言及されているMarkdownファイルを対象候補とする。
 3. それでも特定できない場合はGlobで `*.md` を探索し、候補を絞り込む。
 4. それでも一意に特定できない場合は、生成を進めずユーザーに確認する。
@@ -83,7 +83,7 @@ Step Dのハイブリッド構成を選んだ場合は `article+<強調要素>` 
 
 ## テーマCSSの取り込み
 
-1. `${CLAUDE_SKILL_DIR}/templates/theme-<theme>.css`(`<theme>` は `light` または `dark`)をReadで読み込む。`${CLAUDE_SKILL_DIR}` が解決できない環境では、このSKILL.mdファイル自身が置かれているディレクトリ配下の `templates/` を探すこと。
+1. `${CLAUDE_SKILL_DIR}/templates/theme-<theme>.css`(`<theme>` は `light`、`dark`、`catppuccin-latte`、`catppuccin-mocha`、`editorial`、`technical`、`natural`、`wa` のいずれか)をReadで読み込む。`latte` が指定された場合は `catppuccin-latte`、`mocha` が指定された場合は `catppuccin-mocha` に正規化してから読み込む。`${CLAUDE_SKILL_DIR}` が解決できない環境では、このSKILL.mdファイル自身が置かれているディレクトリ配下の `templates/` を探すこと。
 2. 読み込んだ内容(`:root { ... }` ブロック)を、生成するHTMLの `<style>` タグの先頭にそのままインラインで展開する。`<link>` タグによる外部参照は禁止する。
 3. コンポーネント側のCSS(見出し・表・カード・コードブロックなどのスタイル)は、色・フォント・余白などの値を必ずこの `:root` ブロックのCSS変数経由で参照する形で書く。これにより、`:root` ブロックを差し替えるだけでテーマ切替が完結する状態を保つ。
 
@@ -97,7 +97,7 @@ Step Dのハイブリッド構成を選んだ場合は `article+<強調要素>` 
 - 元Markdownの見出し階層(h1〜h3)を、生成HTMLでも `<h1>`〜`<h3>` として保持すること
 - 元Markdownの情報(見出し・段落・リスト・表・コード・リンク)を欠落させないこと。レイアウトの都合で内容を省略・要約してはならない
 - 色・フォント・余白は必ずCSS変数経由で参照し、`:root` ブロックの外に生のカラー値(hex/rgb/hsl等)を書かないこと
-- テーマ変数に存在しない色が必要になった場合(正負の強調色、影、ホバー背景など)は、生成HTMLの `:root` ブロック内に追加のCSS変数(例: `--positive`, `--negative`, `--shadow`)を定義してから `var()` 経由で参照すること。`:root` ブロックの外に生のカラー値(hex / rgb / rgba / hsl 等)を書くことは、box-shadow等の一見軽微な用途を含め一切禁止。これはテーマ差し替え(`:root` ブロックの置換)だけで全配色が切り替わる状態を保つための制約である。追加変数の値は選択中のテーマ(light/dark)の雰囲気に調和させること
+- テーマ変数に存在しない色が必要になった場合(正負の強調色、影、ホバー背景など)は、生成HTMLの `:root` ブロック内に追加のCSS変数(例: `--positive`, `--negative`, `--shadow`)を定義してから `var()` 経由で参照すること。`:root` ブロックの外に生のカラー値(hex / rgb / rgba / hsl 等)を書くことは、box-shadow等の一見軽微な用途を含め一切禁止。これはテーマ差し替え(`:root` ブロックの置換)だけで全配色が切り替わる状態を保つための制約である。追加変数の値は選択中のテーマの雰囲気に調和させること
 - `lang` 属性をコンテンツの言語に合わせて設定すること(日本語コンテンツなら `lang="ja"`)
 - `dashboard` レイアウト選定時は、広い画面で複数カラムになるレスポンシブグリッド(CSS grid等)でテーブルカードを配置し、狭い画面では1カラムに折り返すこと(テーブルカードを縦一列に積むだけの構成は不可)
 
